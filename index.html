@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Hôtel Spirit of Rally | L'Expérience Ultime</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --noir-profond: #0a0a0a;
+            --rouge-rallye: #c41e3a;
+            --or-luxe: #d4af37;
+            --blanc-casse: #f5f5f0;
+            --gris-asphalte: #2d2d2d;
+            --gradient-hero: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--noir-profond);
+            color: var(--blanc-casse);
+            overflow-x: hidden;
+        }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(196, 30, 58, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--rouge-rallye), #e63950);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(196, 30, 58, 0); }
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 10rem);
+            line-height: 0.9;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, var(--blanc-casse) 0%, rgba(245, 245, 240, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 0.4em;
+            letter-spacing: 0.3em;
+            background: linear-gradient(90deg, var(--or-luxe), #f4cf67);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-style: italic;
+            font-weight: 400;
+            color: rgba(245, 245, 240, 0.8);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rouge-rallye), #e63950);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(196, 30, 58, 0.4);
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--or-luxe);
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ========== STATS BAR ========== */
+        .stats-bar {
+            background: linear-gradient(90deg, var(--gris-asphalte), #3d3d3d, var(--gris-asphalte));
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--or-luxe);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(245, 245, 240, 0.7);
+            margin-top: 0.5rem;
+        }
+
+        /* ========== SECTION COMMUNE ========== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title span {
+            color: var(--or-luxe);
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.2rem;
+            color: rgba(245, 245, 240, 0.7);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== HOTEL SECTION ========== */
+        .hotel-section {
+            background: linear-gradient(180deg, var(--noir-profond) 0%, #121218 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, rgba(45, 45, 45, 0.8), rgba(30, 30, 30, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--rouge-rallye), var(--or-luxe));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--or-luxe);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .feature-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: var(--or-luxe);
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(245, 245, 240, 0.8);
+        }
+
+        /* ========== GALLERY SECTION ========== */
+        .gallery-section {
+            background: #0d0d0d;
+            padding: 6rem 0;
+        }
+
+        .gallery-section .section-title,
+        .gallery-section .section-subtitle {
+            padding: 0 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(3, 250px);
+            gap: 1rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--gris-asphalte);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 8; grid-row: span 2; }
+        .gallery-item:nth-child(2) { grid-column: span 4; }
+        .gallery-item:nth-child(3) { grid-column: span 4; }
+        .gallery-item:nth-child(4) { grid-column: span 4; }
+        .gallery-item:nth-child(5) { grid-column: span 4; }
+        .gallery-item:nth-child(6) { grid-column: span 4; }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            color: rgba(245, 245, 240, 0.4);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gallery-placeholder svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+            stroke: rgba(212, 175, 55, 0.5);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        /* ========== ROUTES SECTION ========== */
+        .routes-section {
+            background: 
+                linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.9)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 50 Q25 30 50 50 T100 50" fill="none" stroke="%23c41e3a" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-size: cover, 200px 100px;
+        }
+
+        .routes-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .routes-text h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--rouge-rallye);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .routes-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(245, 245, 240, 0.85);
+            margin-bottom: 1.5rem;
+        }
+
+        .route-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .route-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .route-list li::before {
+            content: '→';
+            color: var(--or-luxe);
+            font-weight: bold;
+        }
+
+        .routes-image {
+            position: relative;
+        }
+
+        .routes-image-placeholder {
+            aspect-ratio: 4/3;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .routes-image-placeholder svg {
+            width: 80px;
+            height: 80px;
+            stroke: rgba(196, 30, 58, 0.6);
+            fill: none;
+            stroke-width: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .routes-image-placeholder span {
+            color: rgba(245, 245, 240, 0.4);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ========== EXPERIENCE SECTION ========== */
+        .experience-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a10 50%, #0a0a0a 100%);
+            text-align: center;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            padding: 4rem 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(196, 30, 58, 0.1);
+        }
+
+        .experience-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5rem;
+            color: var(--rouge-rallye);
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .experience-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin: 1rem 0;
+            color: var(--or-luxe);
+        }
+
+        .experience-desc {
+            font-size: 0.95rem;
+            color: rgba(245, 245, 240, 0.7);
+            line-height: 1.6;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            background: linear-gradient(135deg, var(--rouge-rallye), #e63950);
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(0,0,0,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+            animation: rotateBg 20s linear infinite;
+        }
+
+        @keyframes rotateBg {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-section p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: white;
+            color: var(--rouge-rallye);
+            padding: 1.2rem 3.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--noir-profond);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========== CONTACT SECTION ========== */
+        .contact-section {
+            background: var(--noir-profond);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--or-luxe);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 240, 0.8);
+        }
+
+        .contact-item a {
+            color: rgba(245, 245, 240, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--rouge-rallye);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: #050505;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            color: var(--or-luxe);
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 240, 0.5);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .routes-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            .gallery-item {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+                min-height: 200px;
+            }
+
+            .gallery-item:nth-child(1) {
+                grid-column: span 2 !important;
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item,
+            .gallery-item:nth-child(1) {
+                grid-column: span 1 !important;
+                min-height: 250px;
+            }
+
+            .contact-info {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">Offre Exclusive Clubs Automobiles</span>
+            <h1>
+                GRAND HÔTEL<br>SPIRIT OF RALLY
+                <span>L'Expérience Ultime</span>
+            </h1>
+            <p class="hero-subtitle">
+                Au cœur des routes légendaires, un hôtel d'exception vous attend pour vivre l'aventure automobile comme jamais
+            </p>
+            <a href="#contact" class="cta-primary">Réservez Votre Séjour</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-number">65</div>
+            <div class="stat-label">Chambres</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Piscines</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Salles à Manger</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Routes Légendaires</div>
+        </div>
+    </div>
+
+    <!-- HOTEL SECTION -->
+    <section class="hotel-section">
+        <h2 class="section-title">Un Hôtel <span>D'Exception</span></h2>
+        <p class="section-subtitle">Dans un écrin de verdure, aux pieds des thermes, découvrez un havre de paix où luxe et passion automobile se rencontrent</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🛏️</span>
+                <h3 class="feature-title">65 Chambres</h3>
+                <p class="feature-desc">Des chambres spacieuses et élégantes, toutes équipées pour votre confort absolu après une journée sur les routes mythiques.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🍽️</span>
+                <h3 class="feature-title">3 Grandes Salles</h3>
+                <p class="feature-desc">Trois salles à manger majestueuses pour vos banquets de club, réunions et célébrations dans une atmosphère unique.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏊</span>
+                <h3 class="feature-title">3 Piscines</h3>
+                <p class="feature-desc">Trois espaces aquatiques pour se détendre : piscine intérieure chauffée, extérieure et bassin thermal.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">♨️</span>
+                <h3 class="feature-title">Aux Pieds des Thermes</h3>
+                <p class="feature-desc">Accès privilégié aux thermes historiques pour une récupération optimale et des moments de pure relaxation.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🍷</span>
+                <h3 class="feature-title">Cuisine Locale</h3>
+                <p class="feature-desc">Une gastronomie gourmande aux saveurs du terroir, préparée avec passion par nos chefs avec des produits locaux.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🏔️</span>
+                <h3 class="feature-title">Cadre Exceptionnel</h3>
+                <p class="feature-desc">Un panorama à couper le souffle sur les montagnes, au départ des plus belles routes de l'arrière-pays.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="gallery-section">
+        <h2 class="section-title">Découvrez <span>Notre Univers</span></h2>
+        <p class="section-subtitle">Un aperçu de l'excellence qui vous attend</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/hotel.jpg" alt="Grand Hôtel Spirit of Rally - Façade principale">
+            </div>
+            <div class="gallery-item">
+                <img src="images/chambre.jpg" alt="Chambre élégante">
+            </div>
+            <div class="gallery-item">
+                <img src="images/piscine.jpg" alt="Piscine couverte">
+            </div>
+            <div class="gallery-item">
+                <img src="images/restaurant.jpg" alt="Salle de restaurant">
+            </div>
+            <div class="gallery-item">
+                <img src="images/route.jpg" alt="Route du Rallye Monte-Carlo">
+            </div>
+            <div class="gallery-item">
+                <img src="images/terrasse.jpg" alt="Vue de l'hôtel">
+            </div>
+        </div>
+    </section>
+
+    <!-- ROUTES SECTION -->
+    <section class="routes-section">
+        <h2 class="section-title">Les Routes <span>Légendaires</span></h2>
+        <p class="section-subtitle">Aux pieds de toutes les spéciales du Rallye Monte-Carlo</p>
+        
+        <div class="routes-content">
+            <div class="routes-text">
+                <h3>L'Histoire à Portée de Volant</h3>
+                <p>
+                    Depuis notre hôtel, accédez en quelques minutes aux routes qui ont forgé la légende du Rallye Monte-Carlo. Ces tracés mythiques serpentent à travers les Alpes, offrant des sensations uniques aux passionnés d'automobile.
+                </p>
+                <p>
+                    Chaque virage raconte une histoire, chaque col est un défi. Que vous soyez en voiture de collection, sportive moderne ou GT, ces routes sont un paradis pour tout amoureux de la conduite.
+                </p>
+                <ul class="route-list">
+                    <li>Burzet–Saint-Martial - La spéciale reine de l’Ardèche : 30 km mythiques entre forêts, cols et zones rapides. </li>
+                    <li>Saint-Bonnet–Saint-Bonnet - Un concentré de rallye : épingles, passages rapides, villages traversés… un vrai test de pilotage. </li>
+                    <li>Antraigues–Le Moulinon - La spéciale historique du Monte-Carlo</li>
+                    <li>Lachamp-Raphaël–Burzet - Une ascension spectaculaire vers les plateaux ardéchois, entre panoramas volcaniques et enchaînements techniques.</li>
+                </ul>
+            </div>
+            <div class="routes-image">
+                <img src="images/route.jpg" alt="Route du Rallye Monte-Carlo" style="width: 100%; height: auto; border: 2px solid rgba(212, 175, 55, 0.3);">
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="experience-section">
+        <h2 class="section-title">Votre <span>Expérience</span></h2>
+        <p class="section-subtitle">Un séjour conçu pour les passionnés</p>
+        
+        <div class="experience-grid">
+            <div class="experience-item">
+                <div class="experience-number">01</div>
+                <h3 class="experience-title">Arrivée & Accueil VIP</h3>
+                <p class="experience-desc">Parking privatisé pour vos véhicules d'exception, check-in personnalisé et cocktail de bienvenue</p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-number">02</div>
+                <h3 class="experience-title">Journées Sur Route</h3>
+                <p class="experience-desc">Parcours balisés, roadbooks exclusifs</p>
+            </div>
+            <div class="experience-item">
+                <div class="experience-number">03</div>
+                <h3 class="experience-title">Soirées Mémorables</h3>
+                <p class="experience-desc">Dîners de gala, échanges entre passionnés</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Prêt à Vivre<br>L'Aventure ?</h2>
+            <p>Contactez-nous pour une offre sur-mesure adaptée à votre club</p>
+            <a href="#contact" class="cta-secondary">Demander un Devis</a>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Contactez-<span>Nous</span></h2>
+        <p class="section-subtitle">Notre équipe est à votre disposition pour organiser votre séjour idéal</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>Téléphone</h4>
+                <p><a href="tel:+33475374213">04 75 37 42 13</a></p>
+            </div>
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p><a href="mailto:contact@domaindesbains.com">contact@domaindesbains.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h4>Adresse</h4>
+                <p>3 Montée des Bains<br>07600 Vals-les-Bains</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">GRAND HÔTEL DES BAINS ★★★</div>
+        <p>© 2025 - Tous droits réservés | L'excellence au service de la passion automobile</p>
+    </footer>
+
+</body>
+</html>
+

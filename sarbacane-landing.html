@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Hôtel Spirit of Rally | L'Expérience Ultime</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #f5f5f0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(196, 30, 58, 0.5); }
+            50% { box-shadow: 0 0 25px 8px rgba(196, 30, 58, 0); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: 
+                linear-gradient(135deg, rgba(10, 10, 10, 0.85) 0%, rgba(26, 26, 46, 0.8) 50%, rgba(22, 33, 62, 0.85) 100%),
+                url('https://www.domainedesbains.com/wp-content/uploads/2025/12/hotel.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, #0a0a0a, transparent);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #c41e3a, #e63950);
+            color: white;
+            padding: 12px 28px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            margin-bottom: 35px;
+            animation: pulse 2.5s infinite;
+            box-shadow: 0 4px 20px rgba(196, 30, 58, 0.4);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: clamp(50px, 12vw, 100px);
+            line-height: 0.95;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: clamp(22px, 4vw, 38px);
+            letter-spacing: 12px;
+            background: linear-gradient(90deg, #d4af37, #f4cf67, #d4af37);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            margin-top: 15px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(18px, 3vw, 24px);
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 45px;
+            max-width: 650px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #c41e3a, #e63950);
+            color: white;
+            padding: 20px 50px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(196, 30, 58, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.6s;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 45px rgba(196, 30, 58, 0.5);
+        }
+
+        .cta-primary:hover::before {
+            left: 100%;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 2s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        .scroll-hint svg {
+            width: 30px;
+            height: 30px;
+            stroke: #d4af37;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* STATS */
+        .stats-bar {
+            background: linear-gradient(90deg, #1a1a1a, #2d2d2d, #1a1a1a);
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 50px;
+            text-align: center;
+            border-top: 2px solid rgba(212, 175, 55, 0.4);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            position: relative;
+        }
+
+        .stats-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .stat-item {
+            min-width: 140px;
+            padding: 10px 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.1);
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 72px;
+            color: #d4af37;
+            line-height: 1;
+            text-shadow: 0 2px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(245, 245, 240, 0.8);
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: clamp(38px, 7vw, 60px);
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            color: #f5f5f0;
+        }
+
+        .section-title span {
+            color: #d4af37;
+        }
+
+        .section-subtitle {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            text-align: center;
+            font-size: clamp(16px, 2.5vw, 20px);
+            color: rgba(245, 245, 240, 0.7);
+            margin-bottom: 60px;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* HOTEL SECTION */
+        .hotel-section {
+            background: linear-gradient(180deg, #0a0a0a 0%, #0f0f15 50%, #0a0a0a 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: linear-gradient(160deg, rgba(50, 50, 55, 0.6), rgba(25, 25, 30, 0.8));
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c41e3a, #d4af37);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            font-size: 55px;
+            margin-bottom: 25px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .feature-title {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+
+        .feature-desc {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(245, 245, 240, 0.75);
+        }
+
+        /* GALLERY */
+        .gallery-section {
+            background: #080808;
+            padding: 100px 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 280px);
+            gap: 12px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #1a1a1a;
+        }
+
+        .gallery-item:nth-child(1) { grid-column: span 8; grid-row: span 2; }
+        .gallery-item:nth-child(2) { grid-column: span 4; }
+        .gallery-item:nth-child(3) { grid-column: span 4; }
+        .gallery-item:nth-child(4) { grid-column: span 4; }
+        .gallery-item:nth-child(5) { grid-column: span 4; }
+        .gallery-item:nth-child(6) { grid-column: span 4; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease, filter 0.4s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%);
+            opacity: 0.7;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.12);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 0.3;
+        }
+
+        /* ROUTES */
+        .routes-section {
+            background: 
+                linear-gradient(rgba(10, 10, 10, 0.97), rgba(10, 10, 10, 0.95)),
+                repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(196, 30, 58, 0.03) 100px, rgba(196, 30, 58, 0.03) 101px);
+        }
+
+        .routes-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .routes-text h3 {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: clamp(32px, 5vw, 42px);
+            color: #c41e3a;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .routes-text p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(245, 245, 240, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .route-list {
+            list-style: none;
+            margin-top: 35px;
+            padding: 0;
+        }
+
+        .route-list li {
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            font-size: 15px;
+            color: #f5f5f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .route-list li:hover {
+            padding-left: 10px;
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .route-list li::before {
+            content: '→';
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .routes-image {
+            position: relative;
+        }
+
+        .routes-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        .routes-image:hover img {
+            border-color: rgba(212, 175, 55, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* EXPERIENCE */
+        .experience-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a10 50%, #0a0a0a 100%);
+            text-align: center;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            padding: 60px 35px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .experience-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c41e3a, #d4af37);
+            transition: width 0.4s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(196, 30, 58, 0.08);
+        }
+
+        .experience-item:hover::after {
+            width: 80%;
+        }
+
+        .experience-number {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 80px;
+            color: #c41e3a;
+            line-height: 1;
+            opacity: 0.7;
+            text-shadow: 0 0 30px rgba(196, 30, 58, 0.3);
+        }
+
+        .experience-title {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 24px;
+            letter-spacing: 4px;
+            margin: 20px 0 15px;
+            color: #d4af37;
+        }
+
+        .experience-desc {
+            font-size: 15px;
+            color: rgba(245, 245, 240, 0.7);
+            line-height: 1.7;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: 
+                linear-gradient(135deg, rgba(196, 30, 58, 0.95), rgba(230, 57, 80, 0.95)),
+                url('https://www.domainedesbains.com/wp-content/uploads/2025/12/route.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .cta-section h2 {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: clamp(40px, 8vw, 70px);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-section p {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 40px;
+            color: white;
+            opacity: 0.95;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: white;
+            color: #c41e3a;
+            padding: 20px 55px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-secondary:hover {
+            background: #0a0a0a;
+            color: white;
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* CONTACT */
+        .contact-section {
+            background: #0a0a0a;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-item {
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h4 {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: #d4af37;
+            margin-bottom: 12px;
+        }
+
+        .contact-item p {
+            font-size: 17px;
+            color: rgba(245, 245, 240, 0.85);
+            line-height: 1.6;
+        }
+
+        .contact-item a {
+            color: rgba(245, 245, 240, 0.85);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #c41e3a;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #050505;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 32px;
+            letter-spacing: 5px;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: rgba(245, 245, 240, 0.5);
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .routes-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+            
+            .gallery-item {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+                min-height: 220px;
+            }
+            
+            .gallery-item:nth-child(1) {
+                grid-column: span 2 !important;
+                min-height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+            
+            .cta-section {
+                background-attachment: scroll;
+            }
+            
+            .stats-bar {
+                gap: 30px;
+                padding: 40px 15px;
+            }
+            
+            .stat-number {
+                font-size: 54px;
+            }
+            
+            .section {
+                padding: 70px 15px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item,
+            .gallery-item:nth-child(1) {
+                grid-column: span 1 !important;
+                min-height: 250px;
+            }
+            
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <span class="badge">Offre Exclusive Clubs Automobiles</span>
+        <h1>
+            GRAND HÔTEL<br>SPIRIT OF RALLY
+            <span>L'Expérience Ultime</span>
+        </h1>
+        <p class="hero-subtitle">
+            Au cœur des routes légendaires, un hôtel d'exception vous attend pour vivre l'aventure automobile comme jamais
+        </p>
+        <a href="https://forms.sbc37.com/660586dcbff98867609e1bae/TOihwzMaRvGtyyhGaS4wNw/form.html" target="_blank" class="cta-primary">Réservez Votre Séjour</a>
+    </div>
+    <div class="scroll-hint">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <div class="stat-number">65</div>
+        <div class="stat-label">Chambres</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Piscines</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Salles à Manger</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Routes Légendaires</div>
+    </div>
+</div>
+
+<!-- HOTEL -->
+<section class="section hotel-section">
+    <h2 class="section-title">Un Hôtel <span>D'Exception</span></h2>
+    <p class="section-subtitle">Dans un écrin de verdure, aux pieds des thermes, découvrez un havre de paix où luxe et passion automobile se rencontrent</p>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <span class="feature-icon">🛏️</span>
+            <h3 class="feature-title">65 Chambres</h3>
+            <p class="feature-desc">Des chambres spacieuses et élégantes, toutes équipées pour votre confort absolu après une journée sur les routes mythiques.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🍽️</span>
+            <h3 class="feature-title">3 Grandes Salles</h3>
+            <p class="feature-desc">Trois salles à manger majestueuses pour vos banquets de club, réunions et célébrations dans une atmosphère unique.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🏊</span>
+            <h3 class="feature-title">3 Piscines</h3>
+            <p class="feature-desc">Trois espaces aquatiques pour se détendre : piscine semi-couverte chauffée extérieure</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">♨️</span>
+            <h3 class="feature-title">Aux Pieds des Thermes</h3>
+            <p class="feature-desc">Accès privilégié aux thermes historiques pour une récupération optimale et des moments de pure relaxation.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🍷</span>
+            <h3 class="feature-title">Cuisine Locale</h3>
+            <p class="feature-desc">Une gastronomie gourmande aux saveurs du terroir, préparée avec passion par nos chefs avec des produits locaux.</p>
+        </div>
+        <div class="feature-card">
+            <span class="feature-icon">🏔️</span>
+            <h3 class="feature-title">Cadre Exceptionnel</h3>
+            <p class="feature-desc">Un panorama à couper le souffle sur les montagnes, au départ des plus belles routes de l'arrière-pays.</p>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery-section">
+    <h2 class="section-title">Découvrez <span>Notre Univers</span></h2>
+    <p class="section-subtitle">Un aperçu de l'excellence qui vous attend</p>
+    
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/hotel.jpg" alt="Grand Hôtel">
+        </div>
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/chambre.jpg" alt="Chambre">
+        </div>
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/piscine.jpg" alt="Piscine">
+        </div>
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/restaurant.jpg" alt="Restaurant">
+        </div>
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/route.jpg" alt="Route">
+        </div>
+        <div class="gallery-item">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/terrasse.jpg" alt="Terrasse">
+        </div>
+    </div>
+</section>
+
+<!-- ROUTES -->
+<section class="section routes-section">
+    <h2 class="section-title">Les Routes <span>Légendaires</span></h2>
+    <p class="section-subtitle">Aux pieds de toutes les spéciales du Rallye Monte-Carlo</p>
+    
+    <div class="routes-content">
+        <div class="routes-text">
+            <h3>L'Histoire à Portée de Volant</h3>
+            <p>
+                Depuis notre hôtel, accédez en quelques minutes aux routes qui ont forgé la légende du Rallye Monte-Carlo. Ces tracés mythiques serpentent à travers les cévennes, offrant des sensations uniques aux passionnés d'automobile.
+            </p>
+            <p>
+                Chaque virage raconte une histoire, chaque col est un défi. Que vous soyez en voiture de collection, sportive moderne ou GT, ces routes sont un paradis pour tout amoureux de la conduite.
+            </p>
+            <ul class="route-list">
+                <li>Burzet–Saint-Martial - La spéciale reine de l'Ardèche : 30 km mythiques entre forêts, cols et zones rapides.</li>
+                <li>Saint-Bonnet–Saint-Bonnet - Un concentré de rallye : épingles, passages rapides, villages traversés… un vrai test de pilotage.</li>
+                <li>Antraigues–Le Moulinon - La spéciale historique du Monte-Carlo</li>
+                <li>Lachamp-Raphaël–Burzet - Une ascension spectaculaire vers les plateaux ardéchois.</li>
+            </ul>
+        </div>
+        <div class="routes-image">
+            <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/route.jpg" alt="Route du Rallye">
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section experience-section">
+    <h2 class="section-title">Votre <span>Expérience</span></h2>
+    <p class="section-subtitle">Un séjour conçu pour les passionnés</p>
+    
+    <div class="experience-grid">
+        <div class="experience-item">
+            <div class="experience-number">01</div>
+            <h3 class="experience-title">Arrivée & Accueil VIP</h3>
+            <p class="experience-desc">Parking privatisé pour vos véhicules d'exception, check-in personnalisé et cocktail de bienvenue</p>
+        </div>
+        <div class="experience-item">
+            <div class="experience-number">02</div>
+            <h3 class="experience-title">Journées Sur Route</h3>
+            <p class="experience-desc">Parcours balisés, roadbooks exclusifs</p>
+        </div>
+        <div class="experience-item">
+            <div class="experience-number">03</div>
+            <h3 class="experience-title">Soirées Mémorables</h3>
+            <p class="experience-desc">Dîners de gala, échanges entre passionnés</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Prêt à Vivre<br>L'Aventure ?</h2>
+    <p>Contactez-nous pour une offre sur-mesure adaptée à votre club</p>
+    <a href="https://forms.sbc37.com/660586dcbff98867609e1bae/TOihwzMaRvGtyyhGaS4wNw/form.html" target="_blank" class="cta-secondary">Demander un Devis</a>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+    <h2 class="section-title">Contactez-<span>Nous</span></h2>
+    <p class="section-subtitle">Notre équipe est à votre disposition pour organiser votre séjour idéal</p>
+    
+    <div class="contact-info">
+        <div class="contact-item">
+            <h4>Téléphone</h4>
+            <p><a href="tel:+33475374213">04 75 37 42 13</a></p>
+        </div>
+        <div class="contact-item">
+            <h4>Email</h4>
+            <p><a href="mailto:contact@domaindesbains.com">contact@domaindesbains.com</a></p>
+        </div>
+        <div class="contact-item">
+            <h4>Adresse</h4>
+            <p>3 Montée des Bains<br>07600 Vals-les-Bains</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-logo">GRAND HÔTEL DES BAINS ★★★</div>
+    <p>© 2025 - Tous droits réservés | L'excellence au service de la passion automobile</p>
+</footer>
+
+</body>
+</html>
