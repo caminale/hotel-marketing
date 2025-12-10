@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu Concours de Noël 🎄 | 3 Commerçants de Vals-les-Bains</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rouge-festif: #D42B2B;
+            --rouge-fonce: #A31F1F;
+            --or: #E8B923;
+            --or-clair: #FFD54F;
+            --vert-sapin: #1B5E3A;
+            --vert-fonce: #0D3D24;
+            --blanc: #FFFFFF;
+            --creme: #FFF8E7;
+            --noir: #1A1A1A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--creme);
+            color: var(--noir);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes countdown {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* DECORATIONS NOEL */
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Ccircle cx='50' cy='50' r='4' fill='white' fill-opacity='0.6'/%3E%3Ccircle cx='200' cy='150' r='3' fill='white' fill-opacity='0.4'/%3E%3Ccircle cx='350' cy='80' r='5' fill='white' fill-opacity='0.5'/%3E%3Ccircle cx='500' cy='200' r='3' fill='white' fill-opacity='0.6'/%3E%3Ccircle cx='650' cy='100' r='4' fill='white' fill-opacity='0.4'/%3E%3Ccircle cx='800' cy='180' r='3' fill='white' fill-opacity='0.5'/%3E%3Ccircle cx='950' cy='60' r='5' fill='white' fill-opacity='0.6'/%3E%3Ccircle cx='100' cy='300' r='3' fill='white' fill-opacity='0.4'/%3E%3Ccircle cx='250' cy='400' r='4' fill='white' fill-opacity='0.5'/%3E%3Ccircle cx='400' cy='350' r='3' fill='white' fill-opacity='0.6'/%3E%3Ccircle cx='550' cy='450' r='5' fill='white' fill-opacity='0.4'/%3E%3Ccircle cx='700' cy='380' r='3' fill='white' fill-opacity='0.5'/%3E%3Ccircle cx='850' cy='420' r='4' fill='white' fill-opacity='0.6'/%3E%3C/svg%3E");
+            animation: snowfall 20s linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 1024px; }
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(160deg, var(--vert-fonce) 0%, var(--vert-sapin) 50%, var(--vert-fonce) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(232, 185, 35, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(212, 43, 43, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: shake 2s ease-in-out infinite;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--rouge-festif);
+            color: white;
+            padding: 12px 30px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(212, 43, 43, 0.4);
+        }
+
+        .hero h1 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(36px, 8vw, 70px);
+            line-height: 1.1;
+            color: var(--blanc);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--or);
+            display: block;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero-value {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--or), var(--or-clair));
+            color: var(--noir);
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 60px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(232, 185, 35, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--blanc);
+            color: var(--vert-fonce);
+            padding: 20px 50px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--or);
+        }
+
+        /* COUNTDOWN */
+        .countdown-section {
+            background: var(--rouge-festif);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .countdown-title {
+            color: white;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 15px 25px;
+            min-width: 90px;
+        }
+
+        .countdown-number {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 36px;
+            color: white;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* LOTS */
+        .lots-section {
+            background: var(--creme);
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-emoji {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(28px, 5vw, 42px);
+            color: var(--vert-fonce);
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            color: var(--rouge-festif);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .lots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .lot-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .lot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .lot-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--rouge-festif), var(--or));
+        }
+
+        .lot-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .lot-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .lot-card:hover .lot-image img {
+            transform: scale(1.1);
+        }
+
+        .lot-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--or);
+            color: var(--noir);
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 20px;
+        }
+
+        .lot-content {
+            padding: 25px;
+        }
+
+        .lot-partner {
+            font-size: 12px;
+            color: var(--rouge-festif);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .lot-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: var(--vert-fonce);
+            margin-bottom: 10px;
+        }
+
+        .lot-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* PARTENAIRES */
+        .partners-section {
+            background: var(--vert-fonce);
+            padding: 80px 20px;
+        }
+
+        .partners-section .section-title {
+            color: white;
+        }
+
+        .partners-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .partner-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--or);
+            transform: translateY(-5px);
+        }
+
+        .partner-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .partner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .partner-card:hover .partner-image img {
+            transform: scale(1.05);
+        }
+
+        .partner-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .partner-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: var(--or);
+            margin-bottom: 8px;
+        }
+
+        .partner-type {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .partner-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn.facebook {
+            background: #1877F2;
+            color: white;
+        }
+
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* BOUTIQUES */
+        .shops-section {
+            background: linear-gradient(180deg, var(--creme) 0%, white 100%);
+            padding: 80px 20px;
+        }
+
+        .shops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .shop-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s ease;
+            position: relative;
+            display: block;
+        }
+
+        .shop-card:hover {
+            border-color: var(--vert-sapin);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .shop-card.featured {
+            border-color: var(--or);
+            background: linear-gradient(180deg, #FFFBEB 0%, white 100%);
+        }
+
+        .shop-card.featured:hover {
+            border-color: var(--rouge-festif);
+        }
+
+        .shop-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--rouge-festif);
+            color: white;
+            padding: 6px 18px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .shop-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .shop-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: var(--vert-fonce);
+            margin-bottom: 5px;
+        }
+
+        .shop-type {
+            font-size: 12px;
+            color: var(--rouge-festif);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .shop-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .shop-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--vert-sapin);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .shop-card:hover .shop-cta {
+            color: var(--rouge-festif);
+            gap: 12px;
+        }
+
+        .shop-cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .shop-card:hover .shop-cta svg {
+            transform: translateX(4px);
+        }
+
+        /* COMMENT PARTICIPER */
+        .how-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .steps-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 40px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--rouge-festif), var(--rouge-fonce));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            box-shadow: 0 8px 25px rgba(212, 43, 43, 0.3);
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        .step-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: var(--vert-fonce);
+            margin-bottom: 8px;
+        }
+
+        .step-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .step-accounts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .account-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--vert-sapin);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* REGLEMENT */
+        .rules-section {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .rules-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8f8f8;
+            border-radius: 20px;
+            padding: 40px;
+            border-left: 5px solid var(--rouge-festif);
+        }
+
+        .rules-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: var(--vert-fonce);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rules-list {
+            list-style: none;
+        }
+
+        .rules-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+            color: #555;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+
+        .rules-list li::before {
+            content: '✓';
+            color: var(--vert-sapin);
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* CTA FINAL */
+        .cta-section {
+            background: linear-gradient(135deg, var(--rouge-festif), var(--rouge-fonce));
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '🎄';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: -50px;
+        }
+
+        .cta-section::after {
+            content: '🎁';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            bottom: -50px;
+            right: -50px;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: shake 1.5s ease-in-out infinite;
+        }
+
+        .cta-section h2 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(28px, 6vw, 45px);
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.facebook {
+            background: white;
+            color: #1877F2;
+        }
+
+        .cta-btn.instagram {
+            background: white;
+            color: #E4405F;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--noir);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .footer-partners {
+            color: var(--or);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .footer-decoration {
+            margin-top: 20px;
+            font-size: 20px;
+            letter-spacing: 10px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .countdown {
+                gap: 10px;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 12px 15px;
+            }
+
+            .countdown-number {
+                font-size: 28px;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+
+            .partner-social {
+                flex-direction: column;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .snow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SNOW -->
+<div class="snow"></div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-emoji">🎁</div>
+        <span class="hero-badge">Jeu Concours de Noël</span>
+        <h1>
+            Gagnez
+            <span>150 € de cadeaux !</span>
+        </h1>
+        <p class="hero-subtitle">
+            3 commerçants de Vals-les-Bains s'associent pour vous offrir un Noël magique
+        </p>
+        <div class="hero-value">
+            🎄 Valeur totale : 150 €
+        </div>
+        <br><br>
+        <a href="#participer" class="hero-cta">
+            Je participe maintenant
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+    <div class="scroll-indicator">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="countdown-section">
+    <p class="countdown-title">⏰ Tirage au sort le 23 décembre</p>
+    <div class="countdown" id="countdown">
+        <div class="countdown-item">
+            <div class="countdown-number" id="days">--</div>
+            <div class="countdown-label">Jours</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="hours">--</div>
+            <div class="countdown-label">Heures</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="minutes">--</div>
+            <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+            <div class="countdown-number" id="seconds">--</div>
+            <div class="countdown-label">Secondes</div>
+        </div>
+    </div>
+</section>
+
+<!-- LOTS -->
+<section class="lots-section">
+    <div class="section-header">
+        <div class="section-emoji">🎁</div>
+        <h2 class="section-title">Les Lots <span>à Gagner</span></h2>
+        <p class="section-subtitle">Un seul gagnant remportera l'ensemble de ces cadeaux !</p>
+    </div>
+    
+    <div class="lots-grid">
+        <!-- Lot 1 : Brunch -->
+        <div class="lot-card">
+            <div class="lot-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/CharleneBoiriePhotographe-DdB-11.jpg" alt="Brunch Grand Hôtel des Bains">
+                <span class="lot-badge">2 cartes</span>
+            </div>
+            <div class="lot-content">
+                <p class="lot-partner">Grand Hôtel des Bains</p>
+                <h3 class="lot-title">2 Cartes Cadeaux Brunch</h3>
+                <p class="lot-description">
+                    Savourez un brunch gourmand pour 2 personnes dans le cadre enchanteur du Grand Hôtel des Bains. Produits frais et locaux garantis !
+                </p>
+            </div>
+        </div>
+
+        <!-- Lot 2 : Chocolats -->
+        <div class="lot-card">
+            <div class="lot-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/CHOCO-BOX-2023-ByGuillaumeEtLaurie2023-Guillaume-CERDiNi-Chocolatier-confiserie-chocolat-glace-bonbon-boitechocolat-WEB-2.jpg" alt="Boîte de chocolats Guillaume Cerdini">
+                <span class="lot-badge">50 chocolats</span>
+            </div>
+            <div class="lot-content">
+                <p class="lot-partner">Guillaume Cerdini</p>
+                <h3 class="lot-title">1 Boîte de 50 Chocolats</h3>
+                <p class="lot-description">
+                    Une sélection raffinée de 50 chocolats artisanaux, confectionnés avec passion par le maître chocolatier Guillaume Cerdini.
+                </p>
+            </div>
+        </div>
+
+        <!-- Lot 3 : La Valsoise -->
+        <div class="lot-card">
+            <div class="lot-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/lavalsoise-frais.jpeg" alt="Épicerie La Valsoise">
+                <span class="lot-badge">40 €</span>
+            </div>
+            <div class="lot-content">
+                <p class="lot-partner">La Valsoise</p>
+                <h3 class="lot-title">1 Carte Cadeau de 40 €</h3>
+                <p class="lot-description">
+                    À dépenser dans cette épicerie fine ardéchoise : vins, thés, produits du terroir et bien d'autres trésors locaux !
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PARTENAIRES -->
+<section class="partners-section">
+    <div class="section-header">
+        <div class="section-emoji">🤝</div>
+        <h2 class="section-title">Nos 3 <span>Partenaires</span></h2>
+        <p class="section-subtitle">Abonnez-vous à leurs comptes pour participer</p>
+    </div>
+    
+    <div class="partners-grid">
+        <!-- Guillaume Cerdini -->
+        <div class="partner-card">
+            <div class="partner-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/Guillaume-Cerdini-Labo-Vals-BW-Color.avif" alt="Guillaume Cerdini Chocolatier">
+            </div>
+            <div class="partner-content">
+                <h3 class="partner-name">Guillaume Cerdini</h3>
+                <p class="partner-type">Chocolatier Artisan</p>
+                <div class="partner-social">
+                    <a href="https://www.facebook.com/ChocolaterieGuillaumeCerdini" target="_blank" class="social-btn facebook">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/guillaumecerdini" target="_blank" class="social-btn instagram">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- La Valsoise -->
+        <div class="partner-card">
+            <div class="partner-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/lavalsoise-frais-vins.jpeg" alt="La Valsoise Épicerie Fine">
+            </div>
+            <div class="partner-content">
+                <h3 class="partner-name">La Valsoise</h3>
+                <p class="partner-type">Épicerie Fine</p>
+                <div class="partner-social">
+                    <a href="https://www.facebook.com/lavalsoise" target="_blank" class="social-btn facebook">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/lavalsoise" target="_blank" class="social-btn instagram">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grand Hôtel des Bains -->
+        <div class="partner-card">
+            <div class="partner-image">
+                <img src="https://www.domainedesbains.com/wp-content/uploads/2025/09/CharleneBoiriePhotographe-DdB-62.jpg" alt="Grand Hôtel des Bains">
+            </div>
+            <div class="partner-content">
+                <h3 class="partner-name">Grand Hôtel des Bains</h3>
+                <p class="partner-type">Hôtel ★★★ & Restaurant</p>
+                <div class="partner-social">
+                    <a href="https://www.facebook.com/domainedesbainsardeche" target="_blank" class="social-btn facebook">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/domaine_des_bains" target="_blank" class="social-btn instagram">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BOUTIQUES -->
+<section class="shops-section">
+    <div class="section-header">
+        <div class="section-emoji">🛍️</div>
+        <h2 class="section-title">Nos <span>Boutiques</span></h2>
+        <p class="section-subtitle">Retrouvez nos partenaires en ligne pour vos cadeaux de Noël</p>
+    </div>
+    
+    <div class="shops-grid">
+        <!-- Guillaume Cerdini -->
+        <a href="https://www.guillaumecerdini.com/" target="_blank" class="shop-card">
+            <div class="shop-icon">🍫</div>
+            <h3 class="shop-name">Guillaume Cerdini</h3>
+            <p class="shop-type">Boutique en ligne</p>
+            <p class="shop-description">Chocolats, macarons, marrons glacés et autres gourmandises artisanales à commander en ligne.</p>
+            <span class="shop-cta">
+                Visiter la boutique
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </span>
+        </a>
+
+        <!-- Grand Hôtel des Bains -->
+        <a href="http://landings.sejours.domainedesbains.fr/660586dcbff98867609e1bae/xMI6Zo1EQJaZfLLmjeQHtg/landing.html" target="_blank" class="shop-card featured">
+            <div class="shop-badge">Offres Noël</div>
+            <div class="shop-icon">🏨</div>
+            <h3 class="shop-name">Grand Hôtel des Bains</h3>
+            <p class="shop-type">Coffrets & Cartes Cadeaux</p>
+            <p class="shop-description">Forfaits bien-être, séjours gastronomiques et cartes cadeaux à offrir pour les fêtes.</p>
+            <span class="shop-cta">
+                Découvrir les offres
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </span>
+        </a>
+
+        <!-- La Valsoise -->
+        <a href="https://epicerie-la-valsoise.fr/" target="_blank" class="shop-card">
+            <div class="shop-icon">🛒</div>
+            <h3 class="shop-name">La Valsoise</h3>
+            <p class="shop-type">À découvrir en boutique</p>
+            <p class="shop-description">Épicerie fine, vins, fromages et produits du terroir. Paniers gourmands sur mesure disponibles sur commande.</p>
+            <span class="shop-cta">
+                Découvrir le site
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </span>
+        </a>
+    </div>
+</section>
+
+<!-- COMMENT PARTICIPER -->
+<section class="how-section" id="participer">
+    <div class="section-header">
+        <div class="section-emoji">🎯</div>
+        <h2 class="section-title">Comment <span>Participer ?</span></h2>
+        <p class="section-subtitle">C'est simple et rapide !</p>
+    </div>
+    
+    <div class="steps-container">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h3 class="step-title">Likez la publication</h3>
+                <p class="step-description">
+                    Rendez-vous sur Facebook ou Instagram et likez la publication du jeu concours sur le compte d'un des 3 partenaires.
+                </p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h3 class="step-title">Abonnez-vous aux 3 partenaires</h3>
+                <p class="step-description">
+                    Suivez les comptes des 3 commerçants pour valider votre participation :
+                </p>
+                <div class="step-accounts">
+                    <span class="account-tag">🍫 Guillaume Cerdini</span>
+                    <span class="account-tag">🛒 La Valsoise</span>
+                    <span class="account-tag">🏨 Grand Hôtel des Bains</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h3 class="step-title">Commentez en identifiant un ami</h3>
+                <p class="step-description">
+                    Laissez un commentaire sous la publication en taguant un ami avec qui vous aimeriez partager ce cadeau de Noël !
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REGLEMENT -->
+<section class="rules-section">
+    <div class="rules-box">
+        <h3 class="rules-title">📋 Règlement du jeu</h3>
+        <ul class="rules-list">
+            <li>Jeu ouvert à toute personne physique majeure résidant en France.</li>
+            <li>Participation possible sur Facebook ou Instagram (un seul tirage multi-réseaux).</li>
+            <li>Tirage au sort réalisé via Comment Picker le <strong>mardi 23 décembre 2025 au soir</strong>.</li>
+            <li>Le gagnant sera vérifié : il doit suivre les 3 comptes partenaires pour valider sa participation.</li>
+            <li>En cas de non-respect des conditions, le participant sera disqualifié et un nouveau tirage sera effectué.</li>
+            <li>Le gagnant sera contacté par message privé et annoncé en story.</li>
+            <li>Lots non échangeables et non remboursables.</li>
+        </ul>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+    <div class="cta-content">
+        <div class="cta-emoji">🎄</div>
+        <h2>Tentez votre chance maintenant !</h2>
+        <p>Offrez-vous (ou offrez à un proche) un Noël gourmand à Vals-les-Bains</p>
+        <div class="cta-buttons">
+            <a href="#" target="_blank" class="cta-btn facebook">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                Participer sur Facebook
+            </a>
+            <a href="#" target="_blank" class="cta-btn instagram">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Participer sur Instagram
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p class="footer-partners">
+        🍫 Guillaume Cerdini • 🛒 La Valsoise • 🏨 Grand Hôtel des Bains
+    </p>
+    <p>Jeu concours organisé par 3 commerçants de Vals-les-Bains (Ardèche)</p>
+    <p>Du 12 au 23 décembre 2025</p>
+    <div class="footer-decoration">🎄 ❄️ 🎁 ❄️ 🎄</div>
+</footer>
+
+<!-- COUNTDOWN SCRIPT -->
+<script>
+    function updateCountdown() {
+        const endDate = new Date('2025-12-23T21:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = endDate - now;
+
+        if (distance > 0) {
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        } else {
+            document.getElementById('days').textContent = '00';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+        }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
+
