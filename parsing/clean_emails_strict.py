@@ -6,6 +6,7 @@ Nettoyage STRICT des emails - supprime tout ce qui est douteux
 import csv
 import re
 import smtplib
+from typing import Any
 import dns.resolver
 import socket
 from collections import defaultdict
@@ -136,7 +137,7 @@ def main():
     npai_rows = []
     stats = defaultdict(int)
     
-    for i, row in enumerate(rows):
+    for i, row in enumerate[dict[str | Any, str | Any]](rows):
         email = row.get('Email', '').strip()
         is_valid, reason = validate_email(email, mx_cache, smtp_results)
         
