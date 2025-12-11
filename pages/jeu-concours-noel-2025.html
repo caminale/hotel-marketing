@@ -215,7 +215,7 @@
             fill: var(--or);
         }
 
-        /* COUNTDOWN */
+        /* COUNTDOWN STATIQUE */
         .countdown-section {
             background: var(--rouge-festif);
             padding: 30px 20px;
@@ -224,39 +224,56 @@
 
         .countdown-title {
             color: white;
-            font-size: 14px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
         }
 
-        .countdown {
+        .countdown-static {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            align-items: center;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
-        .countdown-item {
+        .countdown-date {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             background: rgba(255, 255, 255, 0.15);
             border-radius: 15px;
             padding: 15px 25px;
-            min-width: 90px;
         }
 
-        .countdown-number {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 36px;
-            color: white;
-            line-height: 1;
+        .countdown-icon {
+            font-size: 35px;
         }
 
-        .countdown-label {
-            font-size: 12px;
+        .countdown-info {
+            text-align: left;
+        }
+
+        .countdown-label-static {
+            display: block;
+            font-size: 11px;
             color: rgba(255, 255, 255, 0.8);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 5px;
+        }
+
+        .countdown-value {
+            display: block;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 20px;
+            color: white;
+            margin-top: 3px;
+        }
+
+        .countdown-separator {
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* LOTS */
@@ -896,25 +913,24 @@
     </div>
 </section>
 
-<!-- COUNTDOWN -->
+<!-- COUNTDOWN STATIQUE -->
 <section class="countdown-section">
-    <p class="countdown-title">⏰ Tirage au sort le 23 décembre</p>
-    <div class="countdown" id="countdown">
-        <div class="countdown-item">
-            <div class="countdown-number" id="days">--</div>
-            <div class="countdown-label">Jours</div>
+    <p class="countdown-title">⏰ Plus que quelques jours pour participer !</p>
+    <div class="countdown-static">
+        <div class="countdown-date">
+            <span class="countdown-icon">🎲</span>
+            <div class="countdown-info">
+                <span class="countdown-label-static">Tirage au sort</span>
+                <span class="countdown-value">Mardi 23 Décembre</span>
+            </div>
         </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="hours">--</div>
-            <div class="countdown-label">Heures</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="minutes">--</div>
-            <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-item">
-            <div class="countdown-number" id="seconds">--</div>
-            <div class="countdown-label">Secondes</div>
+        <div class="countdown-separator">→</div>
+        <div class="countdown-date">
+            <span class="countdown-icon">🎁</span>
+            <div class="countdown-info">
+                <span class="countdown-label-static">Juste à temps pour</span>
+                <span class="countdown-value">Offrir à Noël !</span>
+            </div>
         </div>
     </div>
 </section>
@@ -1156,7 +1172,7 @@
         <ul class="rules-list">
             <li>Jeu ouvert à toute personne physique majeure résidant en France.</li>
             <li>Participation possible sur Facebook ou Instagram (un seul tirage multi-réseaux).</li>
-            <li>Tirage au sort réalisé via Comment Picker le <strong>mardi 23 décembre 2025 au soir</strong>.</li>
+            <li>Tirage au sort réalisé via AppSorteos le <strong>mardi 23 décembre 2025 au soir</strong>.</li>
             <li>Le gagnant sera vérifié : il doit suivre les 3 comptes partenaires pour valider sa participation.</li>
             <li>En cas de non-respect des conditions, le participant sera disqualifié et un nouveau tirage sera effectué.</li>
             <li>Le gagnant sera contacté par message privé et annoncé en story.</li>
@@ -1194,34 +1210,6 @@
     <div class="footer-decoration">🎄 ❄️ 🎁 ❄️ 🎄</div>
 </footer>
 
-<!-- COUNTDOWN SCRIPT -->
-<script>
-    function updateCountdown() {
-        const endDate = new Date('2025-12-23T21:00:00').getTime();
-        const now = new Date().getTime();
-        const distance = endDate - now;
-
-        if (distance > 0) {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        } else {
-            document.getElementById('days').textContent = '00';
-            document.getElementById('hours').textContent = '00';
-            document.getElementById('minutes').textContent = '00';
-            document.getElementById('seconds').textContent = '00';
-        }
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-</script>
 
 </body>
 </html>
