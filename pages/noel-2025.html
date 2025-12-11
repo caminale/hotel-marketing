@@ -42,6 +42,85 @@
             text-decoration: none;
         }
 
+        /* BANDEAU JEU CONCOURS */
+        .contest-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 9999;
+            background: linear-gradient(90deg, #D42B2B, #A31F1F);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .contest-banner:hover {
+            background: linear-gradient(90deg, #E63939, #B52525);
+        }
+
+        .contest-banner-icon {
+            font-size: 22px;
+            animation: bounce-icon 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .contest-banner-text {
+            text-align: center;
+        }
+
+        .contest-banner-text strong {
+            color: #FFD700;
+        }
+
+        .contest-banner-cta {
+            background: white;
+            color: #D42B2B;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .contest-banner:hover .contest-banner-cta {
+            background: #FFD700;
+            color: #1A1A1A;
+        }
+
+        /* Décaler le contenu pour le bandeau */
+        .hero {
+            padding-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .contest-banner {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+                font-size: 13px;
+            }
+
+            .contest-banner-cta {
+                padding: 10px 25px;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+        }
+
         /* ANIMATIONS */
         @keyframes fadeInUp {
             from {
@@ -996,6 +1075,15 @@
     </style>
 </head>
 <body>
+
+<!-- BANDEAU JEU CONCOURS -->
+<a href="https://landings.offres.domainedesbains.fr/660586dcbff98867609e1bae/zBDJfGPATVCprBxfj3UzyA/landing.html" class="contest-banner" target="_blank">
+    <span class="contest-banner-icon">🎁</span>
+    <span class="contest-banner-text">
+        <strong>GRAND JEU DE NOËL</strong> — Gagnez 150€ de cadeaux ! Tirage le 23 décembre
+    </span>
+    <span class="contest-banner-cta">Je participe →</span>
+</a>
 
 <!-- SNOW EFFECT -->
 <div class="snowflakes" aria-hidden="true">
