@@ -137,7 +137,7 @@ def main():
     npai_rows = []
     stats = defaultdict(int)
     
-    for i, row in enumerate[dict[str | Any, str | Any]](rows):
+    for i, row in enumerate(rows):
         email = row.get('Email', '').strip()
         is_valid, reason = validate_email(email, mx_cache, smtp_results)
         
