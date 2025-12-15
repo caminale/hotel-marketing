@@ -1,2 +1,6 @@
 .DS_Store
 
+# Fichiers CSV à ignorer
+bdd_club/auto/Base Club Auto - Clean.csv
+bdd_club/auto/clubs_fusionnes_clean.csv
+bdd_club/auto/clubs_fusionnes_npai.csv
