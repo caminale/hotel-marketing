@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visuel Jeu Concours Noël 2025</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .visual {
+            width: 1080px;
+            height: 1080px;
+            background: linear-gradient(160deg, #0D3D24 0%, #1B5E3A 40%, #0D3D24 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Décoration de fond */
+        .visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(232, 185, 35, 0.15) 0%, transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(212, 43, 43, 0.1) 0%, transparent 30%);
+            pointer-events: none;
+        }
+
+        /* Flocons décoratifs */
+        .snowflake {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 50px;
+        }
+        .snowflake:nth-child(1) { top: 3%; left: 3%; font-size: 40px; }
+        .snowflake:nth-child(2) { top: 12%; right: 8%; font-size: 55px; }
+        .snowflake:nth-child(3) { bottom: 25%; left: 2%; font-size: 45px; }
+        .snowflake:nth-child(4) { bottom: 8%; right: 4%; font-size: 50px; }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 45px 50px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #D42B2B;
+            color: white;
+            padding: 14px 40px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 82px;
+            color: white;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-title span {
+            color: #E8B923;
+            display: block;
+            font-size: 95px;
+        }
+
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #E8B923, #FFD54F);
+            color: #0D3D24;
+            padding: 20px 45px;
+            font-size: 32px;
+            font-weight: 700;
+            border-radius: 50px;
+            margin-top: 15px;
+        }
+
+        /* Lots */
+        .lots-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .lots-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 28px;
+            color: white;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 2px;
+        }
+
+        .lots-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .lot-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 22px 18px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .lot-image {
+            width: 110px;
+            height: 110px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            border: 3px solid rgba(232, 185, 35, 0.5);
+        }
+
+        .lot-partner {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+            color: #FFD54F;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .lot-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 22px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        /* Footer - Partenaires */
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        .partners-label {
+            font-size: 18px;
+            color: #FFD54F;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .partners-logos {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 40px;
+            border-radius: 20px;
+            border: 2px solid rgba(232, 185, 35, 0.3);
+        }
+
+        .partner-item {
+            text-align: center;
+        }
+
+        .partner-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .partner-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 18px;
+            color: #FFD54F;
+            font-weight: 700;
+        }
+
+        /* Dates */
+        .dates {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .date-item {
+            background: rgba(212, 43, 43, 0.9);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+<div class="visual">
+    <!-- Flocons décoratifs -->
+    <span class="snowflake">❄</span>
+    <span class="snowflake">❅</span>
+    <span class="snowflake">❆</span>
+    <span class="snowflake">❄</span>
+
+    <div class="content">
+        <!-- Header -->
+        <div class="header">
+            <span class="badge">🎁 Jeu Concours</span>
+            <h1 class="main-title">
+                GRAND JEU
+                <span>DE NOËL</span>
+            </h1>
+            <div class="value-badge">
+                🎄 150 € de cadeaux à gagner !
+            </div>
+        </div>
+
+        <!-- Lots -->
+        <div class="lots-section">
+            <p class="lots-title">🎁 À GAGNER</p>
+            <div class="lots-grid">
+                <div class="lot-card">
+                    <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/CHOCO-BOX-2023-ByGuillaumeEtLaurie2023-Guillaume-CERDiNi-Chocolatier-confiserie-chocolat-glace-bonbon-boitechocolat-WEB-2.jpg" alt="Chocolats" class="lot-image">
+                    <p class="lot-partner">Guillaume Cerdini</p>
+                    <p class="lot-name">1 Boîte de<br>50 Chocolats</p>
+                </div>
+                <div class="lot-card">
+                    <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/CharleneBoiriePhotographe-DdB-11.jpg" alt="Brunch" class="lot-image">
+                    <p class="lot-partner">Grand Hôtel des Bains</p>
+                    <p class="lot-name">2 Cartes<br>Cadeaux Brunch</p>
+                </div>
+                <div class="lot-card">
+                    <img src="https://www.domainedesbains.com/wp-content/uploads/2025/12/lavalsoise-frais.jpeg" alt="La Valsoise" class="lot-image">
+                    <p class="lot-partner">La Valsoise</p>
+                    <p class="lot-name">1 Carte Cadeau<br>de 40 €</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="partners-label">3 commerçants de Vals-les-Bains</p>
+            <div class="partners-logos">
+                <div class="partner-item">
+                    <div class="partner-icon">🍫</div>
+                    <p class="partner-name">Guillaume Cerdini</p>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">🏨</div>
+                    <p class="partner-name">Grand Hôtel des Bains</p>
+                </div>
+                <div class="partner-item">
+                    <div class="partner-icon">🛍️</div>
+                    <p class="partner-name">La Valsoise</p>
+                </div>
+            </div>
+            <div class="dates">
+                <span class="date-item">📅 Du 12 au 23 décembre</span>
+                <span class="date-item">🎲 Tirage le 23/12</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
